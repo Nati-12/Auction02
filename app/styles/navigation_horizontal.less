@@ -1,0 +1,106 @@
+/* styles for navigation menu start here */
+
+.navigation-horizontal, .navigation-horizontal ul, .navigation-horizontal li {
+  margin: 0;
+  padding: 0;
+}
+
+.navigation-horizontal ul {
+  background: #efe0cc;
+}
+
+.navigation-horizontal { /* submenu moves with respect to menu */
+  position: relative;
+  display: table;
+  width: 100%;
+}
+
+.navigation-horizontal ul { /* sub-menu is out of documment's flow */
+  position: absolute;
+  z-index: 10;
+  display: none;
+}
+
+.navigation-horizontal li:hover ul {
+  display: block;
+}
+
+.navigation-horizontal li {
+  display: table-cell;
+  text-align: center;
+}
+
+.navigation-horizontal ul li {
+  display: block;
+  text-align: left;
+}
+
+.navigation-horizontal .last-menu-item { /* last menu item will expand in the right direction */
+  direction: rtl;
+}
+
+.navigation-horizontal .last-menui-tem ul { /* works for IE */
+  right: 0;
+}
+
+.navigation-horizontal .last-menu-item li { /* last menu item will expand in the right direction, but the sub-items will expand normally*/
+  direction: ltr;
+}
+
+.navigation-horizontal a {
+  display: block;
+  padding: 5px 0;
+  color: #000;
+  text-decoration: none;
+}
+
+.navigation-horizontal ul a {
+  padding: 5px 20px;
+}
+
+.navigation-horizontal > li { /* main menu items are set to bold x-large ... */
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.navigation-horizontal ul > li { /* ... but not in sub-menu */
+  font-size: large;
+  font-weight: normal;
+}
+
+.navigation-horizontal li:hover {
+  background: #cdcdcd;
+}
+
+.navigation-horizontal ul li:hover {
+  font-weight: bold;
+}
+
+.navigation-horizontal li { /* put vertical lines in between main menu items ... */
+  border-right: 5px solid black;
+}
+
+.navigation-horizontal li:last-child { /* ... but not for the last menu item ... */
+  border-right: 0;
+}
+
+.navigation-horizontal ul li { /* ... and not in sub-menu */
+  border-right: 0;
+}
+
+/*.navigation-horizontal:nth-child(3) > ul:nth-child(2) .navigation-horizontal:nth-child(3) > ul:nth-child(2) + ul{*/
+.navigation-horizontal .sell-old .old-subproperty {
+  display: none;
+  position: absolute;
+  top: 0;
+  min-width: 200px;
+  z-index: 10;
+}
+
+.navigation-horizontal .sell-old:hover .old-subproperty {
+  display: block;
+  top: 30px;
+  left: 100%;
+  margin-left: 0;
+}
+/* styles for horizontal navigation menu end here */

@@ -1,0 +1,32 @@
+/* styles for vertical menu */
+@side-menu-width: 125px;
+@side-menu-nested-firstlevel-padding: 10px;
+@side-menu-nested-secondlevel-padding: 2*@side-menu-nested-firstlevel-padding;
+
+.menu-vertical ul {
+  list-style: none;
+  margin-left: 0;
+  padding: 5px 0 5px 0;
+}
+.menu-vertical .firstlevel-submenu {
+  padding-left: @side-menu-nested-firstlevel-padding;
+}
+.menu-vertical .secondlevel-submenu {
+  padding-left:@side-menu-nested-secondlevel-padding;
+}
+.navigation-vertical a {
+  color: #000;
+  text-decoration: none;
+}
+.navigation-vertical a:hover {
+  font-weight: bold;
+}
+.menu-vertical ul > li a {
+  font-size: large;
+  text-decoration: underline;
+}
+.menu-vertical .firstlevel-submenu li a {
+  font-size: medium;
+  text-decoration: initial;
+}
+/* styles for vertical menu end here */

@@ -1,0 +1,51 @@
+{
+  "name": "auction01",
+  "version": "1.0.0",
+  "description": "internet-auction \"by an elephant\"",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuriZaliznyak/auction01.git"
+  },
+  "keywords": [
+    "internet-auction",
+    "by",
+    "an",
+    "elephant",
+    "used",
+    "elephants",
+    "elephants",
+    "market"
+  ],
+  "author": "Yuri Zaliznyak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuriZaliznyak/auction01/issues"
+  },
+  "homepage": "https://github.com/YuriZaliznyak/auction01#readme",
+  "dependencies": {
+    "angular": "^1.2.32",
+    "angular-resource": "^1.6.1",
+    "angular-route": "^1.6.1",
+    "angular-sanitize": "^1.6.1",
+    "angular-ui-router": "^0.3.2",
+    "font-awesome": "^4.7.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-jshint": "^2.0.4",
+    "gulp-less": "^3.3.0",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-rev": "^7.1.2",
+    "gulp-uglify": "^2.0.0",
+    "gulp-usemin": "^0.3.26",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1"
+  }
+}

@@ -1,0 +1,199 @@
+function addScrolling(headerID, containerID, footerID) {
+    //add scroll to all sub-divs located inside the container.
+    // Page structure is restricted to "header-container-footer".
+    var resizeHappened = true, scrollAdderIsInProgress = false;
+
+    var header = document.querySelectorAll('#' + headerID)[0],
+        container = document.querySelectorAll('#' + containerID)[0],
+        footer = document.querySelectorAll('#' + footerID)[0];
+    var body = document.querySelectorAll('body')[0];
+
+    console.log('FOOTER2222::: ', header, container, footer);
+
+// get actual scrollbar width
+    var div = document.createElement('div');
+    div.style.overflowX = 'scroll';
+    div.style.width = '50px';
+    div.style.height = '50px';
+    div.style.visibility = 'hidden';
+    document.body.appendChild(div);
+    var scrollWidth = div.offsetHeight - div.clientHeight;
+    document.body.removeChild(div);
+
+    console.log( 'ScrollWidth == ', scrollWidth );
+
+
+    var allElements2AddScroll = getElementChildren(container);
+
+    // var heightsOriginal = [];
+    // for (var iCurrElement = 0; iCurrElement < allElements2AddScroll.length; iCurrElement++) {
+    //     heightsOriginal.push(getTotalHeight(allElements2AddScroll[iCurrElement]));
+    // }
+    var heightsOriginal = getOriginalHeights(allElements2AddScroll);
+        console.log('Initial heights:: ', heightsOriginal);
+
+    var headerHeight = getTotalHeight(header);
+
+    if (!window.getComputedStyle) {
+        window.getComputedStyle = function (el, pseudo) {
+            this.el = el;
+            this.getPropertyValue = function (prop) {
+                var re = /(\-([a-z]){1})/g;
+                if (prop == 'float') prop = 'styleFloat';
+                if (re.test(prop)) {
+                    prop = prop.replace(re, function () {
+                        return arguments[2].toUpperCase();
+                    });
+                }
+                return el.currentStyle[prop] ? el.currentStyle[prop] : null;
+            };
+            return this;
+        };
+    }
+
+    var bodyStyle = window.getComputedStyle ? getComputedStyle(body, null) : body.currentStyle;
+    var bodyMarginTop = parseFloat(bodyStyle.getPropertyValue('margin-top')) || 0;
+    var bodyPaddingTop = parseFloat(bodyStyle.getPropertyValue('padding-top')) || 0;
+    var containerStyle = window.getComputedStyle ? getComputedStyle(container, null) : container.currentStyle;
+    var containerMarginTop = parseFloat(containerStyle.getPropertyValue('margin-top')) || 0;
+    var containerPaddingTop = parseFloat(containerStyle.getPropertyValue('padding-top')) || 0;
+    var containerMarginBottom = parseFloat(containerStyle.getPropertyValue('margin-bottom')) || 0;
+    var containerPaddingBottom = parseFloat(containerStyle.getPropertyValue('padding-bottom')) || 0;
+    var containerBorderTop = parseFloat(containerStyle.getPropertyValue('border-top')) || 0;
+    var containerBorderBottom = parseFloat(containerStyle.getPropertyValue('border-bottom')) || 0;
+
+    var containerOffsetTop = container.offsetTop || 0;
+    var containerTotalHeight = getTotalHeight(container);
+
+    addScrollToAllElements();
+
+
+    if (window.addEventListener) {
+        window.addEventListener('resize', resizeFlagUpdater);
+    } else if (document.attachEvent) {              // fcuk IE 8, polyfill it! https://gist.github.com/jonathantneal/3748027
+        //document.attachEvent('onresize', resizeFlagUpdater);
+        !window.addEventListener && function (e, t, n, r, i, s, o) {
+            e[r] = t[r] = n[r] = function (e, t) {
+                var n = this;
+                o.unshift([n, e, t, function (e) {
+                    e.currentTarget = n, e.preventDefault = function () {
+                        e.returnValue = !1;
+                    }, e.stopPropagation = function () {
+                        e.cancelBubble = !0;
+                    }, e.target = e.srcElement || n, t.call(n, e);
+                }]), this.attachEvent("on" + e, o[0][3]);
+            }, e[i] = t[i] = n[i] = function (e, t) {
+                for (var n = 0, r; r = o[n]; ++n)if (r[0] == this && r[1] == e && r[2] == t)return this.detachEvent("on" + e, o.splice(n, 1)[0][3]);
+            }, e[s] = t[s] = n[s] = function (e) {
+                return this.fireEvent("on" + e.type, e);
+            };
+        }(Window.prototype, HTMLDocument.prototype, Element.prototype, "addEventListener", "removeEventListener", "dispatchEvent", []);
+        window.addEventListener('resize', resizeFlagUpdater);
+    }
+
+    var resizeControlInterval = setInterval(function () {
+        heightsOriginal = getOriginalHeights(allElements2AddScroll);
+        addScrollToAllElements();
+    }, 1500);
+
+
+
+
+    function addScrollToAllElements() {
+
+        if (!resizeHappened || scrollAdderIsInProgress) return; // other instance of scroll adder is working right now
+        //console.log('scrolling fired by timer ...', resizeHappened, scrollAdderIsInProgress);
+        scrollAdderIsInProgress = true;
+        resizeHappened = false;
+
+        var windowFullHeight = document.documentElement.clientHeight || document.body.clientHeight;
+
+        for (var iCurrElement = 0; iCurrElement < allElements2AddScroll.length; iCurrElement++) {
+            var currElement = allElements2AddScroll[iCurrElement];
+            var currElementStyle = getElementStyle(currElement);
+            var currElementMarginTop = parseFloat(currElementStyle.getPropertyValue('margin-top')) || 0;
+
+            // if (currElement.offsetTop - currElementMarginTop
+            //     + heightsOriginal[iCurrElement] > windowFullHeight) { // element does not fit amd must be scrolled
+
+            //console.log('Processing element:: ', currElement, currElement.offsetTop, getTotalHeight(currElement), windowFullHeight,
+            //    currElement.offsetTop + getTotalHeight(currElement) > windowFullHeight);
+                if (currElement.offsetTop + heightsOriginal[iCurrElement]+scrollWidth > windowFullHeight) {
+
+                var currElementPaddingTop = parseFloat(currElementStyle.getPropertyValue('padding-top')) || 0;
+                var currElementPaddingBottom = parseFloat(currElementStyle.getPropertyValue('padding-bottom')) || 0;
+                //var currElementMarginTop = parseFloat(currElementStyle.getPropertyValue('margin-top')) || 0;
+                var currElementMarginBottom = parseFloat(currElementStyle.getPropertyValue('margin-bottom')) || 0;
+                var currElementBorderTop = parseFloat(currElementStyle.getPropertyValue('border-top')) || 0;
+                var currElementBorderBottom = parseFloat(currElementStyle.getPropertyValue('border-bottom')) || 0;
+
+                var newHeight = windowFullHeight
+                    - ( bodyPaddingTop + bodyMarginTop )
+                    - headerHeight
+                    - ( currElementMarginTop + currElementMarginBottom )
+                    - ( currElementPaddingTop + currElementPaddingBottom )
+                    - ( currElementBorderTop + currElementBorderBottom )
+                    - ( containerMarginTop + containerPaddingTop +
+                    containerMarginBottom + containerPaddingBottom +
+                    containerBorderTop + containerBorderBottom );
+
+                    newHeight = windowFullHeight - currElement.offsetTop - scrollWidth
+                        - ( currElementMarginTop + currElementMarginBottom )
+                        - ( currElementPaddingTop + currElementPaddingBottom )
+                        - ( currElementBorderTop + currElementBorderBottom );
+
+                currElement.style.height = newHeight + 'px';
+                currElement.style.overflow = 'auto';
+            }
+            else {
+                //currElement.style.overflow = 'hidden';
+                currElement.style.height = heightsOriginal[iCurrElement] + 'px';
+            }
+        }
+        scrollAdderIsInProgress = false;
+    }
+
+    function resizeFlagUpdater() {
+        resizeHappened = true;
+        // console.log('Resize event fired!!111', resizeHappened);
+    }
+
+}
+function getOriginalHeights(allElements2AddScroll) {
+    var result = [];
+    for (var iCurrElement = 0; iCurrElement < allElements2AddScroll.length; iCurrElement++) {
+        result.push(getTotalHeight(allElements2AddScroll[iCurrElement]));
+    }
+    return result;
+}
+function getElementChildren(element) {
+    var childNodes = element.childNodes,
+        children = [],
+        i = childNodes.length;
+    while (i--) {
+        if (childNodes[i].nodeType == 1) {
+            children.unshift(childNodes[i]);
+        }
+    }
+    return children;
+}
+function getElementStyle(element) {
+    return window.getComputedStyle ? getComputedStyle(element, null) : element.currentStyle;
+}
+function getElementMargins(element) { // 0-top 1-right 2-bottom 3-left
+    var margins = [];
+    var elementStyle = getElementStyle(element);
+    var marginTop = parseInt(elementStyle.marginTop), marginBottom = parseInt(elementStyle.marginBottom),
+        marginLeft = parseInt(elementStyle.marginBottom), marginRight = parseInt(elementStyle.marginBottom);
+    margins[0] = marginTop || 0;
+    margins[1] = marginRight || 0;
+    margins[2] = marginBottom || 0;
+    margins[3] = marginLeft || 0;
+    return margins;
+}
+function getTotalHeight(element) { // returns elemen's total height including paddings, borders, margins
+    var height = element.offsetHeight;
+    var margins = getElementMargins(element);
+    height = parseFloat(height) + margins[0] + margins[2];
+    return height;
+}

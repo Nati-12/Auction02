@@ -1,0 +1,73 @@
+<div class="mainPageContainer">
+
+    <div class="breadcrumbs"><span class="breadcrumb-text"><a ui-sref="app">Главная</a>
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        Просмотр слона</span></div>
+
+    <div class="itemdetails-container">
+        <div class="itemdetails-image">
+            <img ng-src="{{item.itemImageFilename}}"/>
+            <button id="openProposePriceModalButton" ng-click="showHidePriceModal(1)">Предложить цену</button>
+        </div>
+        <div class="itemdetails-table">
+            <h3>Код слона: {{item._id}}</h3>
+            <table>
+                <tr>
+                    <td>Кличка слона:</td>
+                    <td>{{item.itemName}}</td>
+                </tr>
+                <tr>
+                    <td>Имя продавца:</td>
+                    <td>{{item.sellerName}}</td>
+                </tr>
+                <tr>
+                    <td>Состояние слона:</td>
+                    <td>{{item.itemAge}}</td>
+                </tr>
+                <tr>
+                    <td>Стартовая цена:</td>
+                    <td>{{item.itemStartPrice}}</td>
+                </tr>
+                <tr>
+                    <td>Текущая ставка:</td>
+                    <td>{{item.itemCurrentPrice}}</td>
+                </tr>
+                <tr>
+                    <td>Блиц-цена:</td>
+                    <td>{{item.itemImmediatePrice}}</td>
+                </tr>
+                <tr>
+                    <td>Начало торгов:</td>
+                    <td>{{item.startDate}}</td>
+                </tr>
+                <tr>
+                    <td>Окончание торгов:</td>
+                    <td>{{item.endDate}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="itemdetails-description">
+            <!--<p>{{item.itemDescription}}</p>-->
+            <p ng-bind-html="item.itemDescription"></p>
+        </div>
+        <div class="div-propose-price">
+            <label for="proposePriceInput">
+                <p>{{item.itemName}},</p>
+                <p>предложу за тебя</p>
+            </label>
+            <input type="text" ng-model="proposedPrice" id="proposePriceInput" minval="{{item.itemCurrentPrice}}"
+                   onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="шекелей"/>
+            <button id="submitPriceProposition" ng-click="submitProposition()">Сделать ставку</button>
+            <button id="cancelPriceProposition" ng-click="proposedPrice=''; showHidePriceModal(0)">Отмена</button>
+
+            <div class="div-propose-price-spinner">
+                <img src="../images/spinner.gif"/>
+                <span>{{proposePriceSpinnerModalMessage}}</span>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>

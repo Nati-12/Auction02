@@ -1,0 +1,70 @@
+.item-wrapper {
+  position: relative;
+  border: 3px solid dimgrey;
+  width: 200px;
+  height: 300px;
+  margin: 5px;
+  display: inline-block;
+  text-align: center;
+  background-color: #e7e7e7;
+}
+.image-wrapper {
+  line-height: 200px;
+}
+.image-div {
+  display: inline-block;
+  /* together with "line-height" 100% of parent height this */
+  vertical-align: middle;
+  /* makes vertical centering */
+  line-height: 1.25;
+  /* of image-wrapper div */
+}
+.image-wrapper img {
+  max-height: 150px;
+  max-width: 150px;
+  border: 2px solid dimgrey;
+}
+.description-wrapper {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100px;
+  display: inline-block;
+}
+.description-wrapper p {
+  padding: 2px;
+  margin: 5px;
+}
+#itemNameParagraph {
+  font-weight: bold;
+}
+.pagination-horizontal {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: -10px;
+  overflow: hidden;
+  display: inline-block;
+}
+.pagination-horizontal li {
+  float: left;
+}
+.pagination-horizontal li a {
+  display: block;
+  text-align: center;
+  padding: 5px 15px;
+  text-decoration: none;
+}
+.pagination-horizontal li a:hover {
+  color: blue;
+  background-color: #e7e7e7;
+}
+.description-wrapper button {
+  padding: 5px;
+  border-radius: 6px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+.description-wrapper button:focus {
+  box-shadow: 0 0 5px #000000;
+}

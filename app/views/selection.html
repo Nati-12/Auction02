@@ -1,0 +1,41 @@
+<div class="mainPageContainer">
+
+    <div class="breadcrumbs"><span class="breadcrumb-text"><a ui-sref="app">Главная</a>
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i> Подбор слонов</span></div>
+
+    <h2>Подбор слона (всего в базе {{iNumItems}} слонов)</h2>
+    <div class="pagination-div">
+        <p>Показать на странице:
+            <label><input type="radio" ng-model="iNumItemsPerPage" ng-value="5" ng-change="updatePagesNumbers()"> 5 </label>
+            <label><input type="radio" ng-model="iNumItemsPerPage" ng-value="10" checked ng-change="updatePagesNumbers()"> 10 </label>
+            <label><input type="radio" ng-model="iNumItemsPerPage" ng-value="15" ng-change="updatePagesNumbers()"> 15 </label>
+        </p>
+
+        Переход на страницу:
+        <ul class="pagination-horizontal">
+            <li ng-repeat="page in pageNamesArray" ng-click="generatePageItemNumbers(page)">
+                <a ng-style="markCurrentPage(page)">{{page}}</a>
+            </li>
+        </ul>
+
+        <button ng-click="loadNextPortion()">Случайные слоны</button>
+
+    </div>
+
+    <div class="item-wrapper" ng-repeat="i in itemNumbersArray">
+        <div class="image-wrapper">
+            <div class="image-div">
+                <img ng-src="{{allItems[i].itemImageFilename}}">
+            </div>
+        </div>
+        <div class="description-wrapper">
+            <p id="itemNameParagraph">{{allItems[i].itemName}}</p>
+            <p>{{allItems[i].itemCurrentPrice}} теньге</p>
+            <button ng-click="navigate2Item(allItems[i]._id)">Подробнее</button>
+        </div>
+
+
+    </div>
+
+
+</div>

@@ -1,0 +1,55 @@
+<div class="mainPageContainer">
+    <div class="breadcrumbs"><span class="breadcrumb-text"><a ui-sref="app">Главная</a>
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i> Добавить слона</span></div>
+
+    <!--<img class="a1" src="../images/spinner.gif"/>-->
+    <!--<span class="a1">{{message}}</span>-->
+
+
+    <div class="addnewitem-form-wrapper">
+
+        <div class="uploadInfo spinner">
+            <img src="../images/spinner.gif"/>
+            <span>{{message}}</span>
+        </div>
+        <div class="uploadInfo nospinner">
+            <span>{{message}}</span>
+            <button>{{buttonText}}</button>
+        </div>
+
+        <h2>Выставить слона на продажу</h2>
+        <form class="add-new-item-form clearfix" ng-submit="submitNewItem()">
+
+            <div class="halfwidth toleft clearfix">
+                <input type="text" ng-model="item.sellerName" placeholder="Имя продавца" required>
+                <input type="text" ng-model="item.itemName" placeholder="Кличка слона" required>
+                <select ng-model="item.itemAge" title="Износ слона" required>
+                    <option value="" disabled selected>Износ слона</option>
+                    <option value="Совсем новый">Новый слон</option>
+                    <option value="Староват">Слон б\у</option>
+                    <option value="Красивый">Красивый</option>
+                    <option value="Блестящий">Блестящий</option>
+                    <option value="Совсем как настоящий">Совсем как настоящий</option>
+                </select>
+                <input type="number" ng-model="item.itemStartPrice" placeholder="Стартовая цена" required>
+                <input type="number" ng-model="item.itemImmediatePrice" placeholder="Блиц-цена" required>
+                <input type="date" placeholder="Начало торгов:" ng-model="item.startDate" required>
+                <input type="date" placeholder="Окончание торгов:" ng-model="item.endDate" required>
+
+            </div>
+
+            <div class="halfwidth toright clearfix">
+                <textarea ng-model="item.itemDescription" placeholder="Описание"></textarea>
+
+                <label for="addNewItemForm_FileInput" class="fileInputLabel">Загрузить фото</label>
+                <input type="file" id="addNewItemForm_FileInput" accept="image/*">
+                <span id="filenameShowHere">Файл изображения: <span class="colorblue">{{item.itemImageFilename}}</span></span>
+
+            </div>
+
+            <input type="submit" value="Выставить на продажу" id="input-submit">
+
+        </form>
+
+    </div>
+</div>

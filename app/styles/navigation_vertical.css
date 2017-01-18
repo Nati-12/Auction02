@@ -1,0 +1,28 @@
+/* styles for vertical menu */
+.menu-vertical ul {
+  list-style: none;
+  margin-left: 0;
+  padding: 5px 0 5px 0;
+}
+.menu-vertical .firstlevel-submenu {
+  padding-left: 10px;
+}
+.menu-vertical .secondlevel-submenu {
+  padding-left: 20px;
+}
+.navigation-vertical a {
+  color: #000;
+  text-decoration: none;
+}
+.navigation-vertical a:hover {
+  font-weight: bold;
+}
+.menu-vertical ul > li a {
+  font-size: large;
+  text-decoration: underline;
+}
+.menu-vertical .firstlevel-submenu li a {
+  font-size: medium;
+  text-decoration: initial;
+}
+/* styles for vertical menu end here */

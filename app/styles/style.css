@@ -1,0 +1,611 @@
+/* styles for navigation menu start here */
+.navigation-horizontal,
+.navigation-horizontal ul,
+.navigation-horizontal li {
+  margin: 0;
+  padding: 0;
+}
+.navigation-horizontal ul {
+  background: #efe0cc;
+}
+.navigation-horizontal {
+  /* submenu moves with respect to menu */
+  position: relative;
+  display: table;
+  width: 100%;
+}
+.navigation-horizontal ul {
+  /* sub-menu is out of documment's flow */
+  position: absolute;
+  z-index: 10;
+  display: none;
+}
+.navigation-horizontal li:hover ul {
+  display: block;
+}
+.navigation-horizontal li {
+  display: table-cell;
+  text-align: center;
+}
+.navigation-horizontal ul li {
+  display: block;
+  text-align: left;
+}
+.navigation-horizontal .last-menu-item {
+  /* last menu item will expand in the right direction */
+  direction: rtl;
+}
+.navigation-horizontal .last-menui-tem ul {
+  /* works for IE */
+  right: 0;
+}
+.navigation-horizontal .last-menu-item li {
+  /* last menu item will expand in the right direction, but the sub-items will expand normally*/
+  direction: ltr;
+}
+.navigation-horizontal a {
+  display: block;
+  padding: 5px 0;
+  color: #000;
+  text-decoration: none;
+}
+.navigation-horizontal ul a {
+  padding: 5px 20px;
+}
+.navigation-horizontal > li {
+  /* main menu items are set to bold x-large ... */
+  font-size: x-large;
+  font-weight: bold;
+}
+.navigation-horizontal ul > li {
+  /* ... but not in sub-menu */
+  font-size: large;
+  font-weight: normal;
+}
+.navigation-horizontal li:hover {
+  background: #cdcdcd;
+}
+.navigation-horizontal ul li:hover {
+  font-weight: bold;
+}
+.navigation-horizontal li {
+  /* put vertical lines in between main menu items ... */
+  border-right: 5px solid black;
+}
+.navigation-horizontal li:last-child {
+  /* ... but not for the last menu item ... */
+  border-right: 0;
+}
+.navigation-horizontal ul li {
+  /* ... and not in sub-menu */
+  border-right: 0;
+}
+/*.navigation-horizontal:nth-child(3) > ul:nth-child(2) .navigation-horizontal:nth-child(3) > ul:nth-child(2) + ul{*/
+.navigation-horizontal .sell-old .old-subproperty {
+  display: none;
+  position: absolute;
+  top: 0;
+  min-width: 200px;
+  z-index: 10;
+}
+.navigation-horizontal .sell-old:hover .old-subproperty {
+  display: block;
+  top: 30px;
+  left: 100%;
+  margin-left: 0;
+}
+/* styles for horizontal navigation menu end here */
+/* styles for vertical menu */
+.menu-vertical ul {
+  list-style: none;
+  margin-left: 0;
+  padding: 5px 0 5px 0;
+}
+.menu-vertical .firstlevel-submenu {
+  padding-left: 10px;
+}
+.menu-vertical .secondlevel-submenu {
+  padding-left: 20px;
+}
+.navigation-vertical a {
+  color: #000;
+  text-decoration: none;
+}
+.navigation-vertical a:hover {
+  font-weight: bold;
+}
+.menu-vertical ul > li a {
+  font-size: large;
+  text-decoration: underline;
+}
+.menu-vertical .firstlevel-submenu li a {
+  font-size: medium;
+  text-decoration: initial;
+}
+/* styles for vertical menu end here */
+/* Form "add new item" styles start here */
+.add-new-item-form *,
+.add-new-item-form *:before,
+.add-new-item-form *:after {
+  box-sizing: border-box;
+}
+.addnewitem-form-wrapper h2 {
+  text-align: center;
+  color: black;
+}
+.add-new-item-form {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 12px;
+}
+.add-new-item-form input,
+.add-new-item-form textarea,
+.add-new-item-form select,
+.add-new-item-form button,
+.add-new-item-form label,
+.add-new-item-form #filenameShowHere,
+.nospinner button {
+  border: 0;
+  outline: 0;
+  padding: 10px;
+  border-radius: 6px;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  font-family: sans-serif;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  resize: none;
+}
+.add-new-item-form input:focus,
+.add-new-item-form textarea:focus,
+.add-new-item-form select:focus,
+.add-new-item-form button:focus,
+.add-new-item-form label:focus,
+.add-new-item-form #filenameShowHere:focus,
+.nospinner button:focus {
+  box-shadow: 0 0 5px #000000;
+}
+.add-new-item-form #filenameShowHere {
+  display: none;
+  border: 1px solid black;
+  border-radius: 0;
+  background-color: white;
+}
+.colorblue {
+  color: blue;
+}
+.add-new-item-form #input-submit,
+.add-new-item-form button {
+  color: black;
+  background: #c2c2c2;
+  cursor: pointer;
+}
+.add-new-item-form #input-submit:hover,
+.add-new-item-form button:hover {
+  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0);
+}
+.add-new-item-form textarea {
+  height: 220px;
+}
+.add-new-item-form .halfwidth {
+  float: left;
+  width: 48%;
+  margin-bottom: 10px;
+}
+.add-new-item-form .toright {
+  width: 50%;
+}
+.toleft {
+  margin-right: 2%;
+}
+@media (max-width: 480px) {
+  .halfwidth {
+    width: 100%;
+    float: none;
+    margin-bottom: 0;
+  }
+}
+/* Clearfix */
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.add-new-item-form input[type="date"]:before {
+  content: attr(placeholder);
+  color: #aaa;
+  width: 100%;
+  margin-right: 5px;
+}
+.add-new-item-form input[type="date"]:valid:before,
+.add-new-item-form input[type="date"]:focus:before {
+  content: '';
+  width: 0;
+}
+.add-new-item-form input[type="file"] {
+  display: none;
+}
+.addnewitem-form-wrapper {
+  position: relative;
+  margin: 20px;
+  text-align: center;
+}
+.uploadInfo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: none;
+}
+.uploadInfo span {
+  display: block;
+  font-size: x-large;
+  font-weight: bold;
+}
+.nospinner {
+  background-color: lightgrey;
+  width: 75%;
+  height: 25%;
+  padding: 25px;
+  border: 4px solid grey;
+  border-radius: 12px;
+}
+.nospiner > button {
+  font-size: x-large;
+  font-weight: bold;
+}
+/* Form "add new item" styles end here */
+.itemdetails-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  border: 2px solid dimgrey;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.itemdetails-image {
+  position: relative;
+  float: left;
+  width: 170px;
+  margin: 20px;
+  padding-top: 20px;
+}
+.itemdetails-image button {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  border: 0;
+  outline: 0;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  resize: none;
+}
+.itemdetails-image button:focus {
+  box-shadow: 0 0 5px #000000;
+}
+.itemdetails-image img {
+  max-height: 150px;
+  max-width: 150px;
+  padding: 10px;
+  background: #dddddd;
+  border: 2px solid dimgrey;
+}
+.itemdetails-table {
+  margin-left: 200px;
+  padding: 20px;
+  padding-bottom: 0;
+  overflow-x: auto;
+}
+.itemdetails-table table {
+  width: 100%;
+  border-collapse: collapse;
+  min-height: 200px;
+}
+.itemdetails-table table td {
+  border-bottom: 1px solid #dddddd;
+}
+.itemdetails-table table tr {
+  padding: 0;
+}
+.itemdetails-table table tr:hover {
+  background-color: #dddddd;
+}
+.itemdetails-description {
+  padding: 20px;
+  padding-top: 0;
+}
+.div-propose-price {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: lightgrey;
+  width: auto;
+  max-width: 400px;
+  height: auto;
+  min-height: 150px;
+  max-height: 200px;
+  margin: auto;
+  margin-top: 10px;
+  padding: 25px;
+  border: 4px solid grey;
+  border-radius: 12px;
+  text-align: center;
+  display: none;
+}
+.div-propose-price input,
+.div-propose-price label {
+  display: block;
+  margin: auto;
+}
+.div-propose-price button {
+  border: 0;
+  outline: 0;
+  padding: 10px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: 10px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  resize: none;
+}
+.div-propose-price button:focus {
+  box-shadow: 0 0 5px #000000;
+}
+.div-propose-price-spinner {
+  display: none;
+}
+.div-propose-price-spinner,
+.div-propose-price-spinner span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.div-propose-price-spinner span {
+  top: 85%;
+  color: black;
+  font-size: xx-large;
+  font-weight: bold;
+}
+.div-propose-price-spinner img {
+  max-height: 100%;
+}
+.item-wrapper {
+  position: relative;
+  border: 3px solid dimgrey;
+  width: 200px;
+  height: 300px;
+  margin: 5px;
+  display: inline-block;
+  text-align: center;
+  background-color: #e7e7e7;
+}
+.image-wrapper {
+  line-height: 200px;
+}
+.image-div {
+  display: inline-block;
+  /* together with "line-height" 100% of parent height this */
+  vertical-align: middle;
+  /* makes vertical centering */
+  line-height: 1.25;
+  /* of image-wrapper div */
+}
+.image-wrapper img {
+  max-height: 150px;
+  max-width: 150px;
+  border: 2px solid dimgrey;
+}
+.description-wrapper {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100px;
+  display: inline-block;
+}
+.description-wrapper p {
+  padding: 2px;
+  margin: 5px;
+}
+#itemNameParagraph {
+  font-weight: bold;
+}
+.pagination-horizontal {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: -10px;
+  overflow: hidden;
+  display: inline-block;
+}
+.pagination-horizontal li {
+  float: left;
+}
+.pagination-horizontal li a {
+  display: block;
+  text-align: center;
+  padding: 5px 15px;
+  text-decoration: none;
+}
+.pagination-horizontal li a:hover {
+  color: blue;
+  background-color: #e7e7e7;
+}
+.description-wrapper button {
+  padding: 5px;
+  border-radius: 6px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+.description-wrapper button:focus {
+  box-shadow: 0 0 5px #000000;
+}
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  overflow: auto;
+}
+.header {
+  position: relative;
+  height: 187px;
+  max-width: 1600px;
+  min-width: 640px;
+  width: 100%;
+  background-color: #f2f2f2;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+.slider {
+  display: inline-block;
+  height: 150px;
+  background: #f2f2f2;
+  text-align: center;
+  margin-bottom: 0;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+.img4Slider {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+}
+.menubar-horizontal {
+  margin-top: -4px;
+  max-width: 1600px;
+  min-width: 640px;
+  width: auto;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+.footer {
+  position: fixed;
+  height: 32px;
+  min-width: 640px;
+  bottom: 0;
+  top: auto;
+  background-color: #fbfbfb;
+  width: 100%;
+  text-align: center;
+}
+.div-to-right {
+  float: right;
+}
+.close-footer-button {
+  border-radius: 4px;
+  padding-top: -3px;
+  padding-bottom: -3px;
+  margin-right: 5px;
+}
+/* color substyles for social icons in footer */
+.redcolor {
+  color: red;
+}
+.lightbluecolor {
+  color: #00B7FF;
+}
+.darkbluecolor {
+  color: darkblue;
+}
+.content-container {
+  position: absolute;
+  max-width: 1600px;
+  min-width: 640px;
+  top: 187px;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  border: 2px solid black;
+  overflow: auto;
+}
+.sidebar {
+  position: absolute;
+  width: 125px;
+  top: 0;
+  bottom: 0;
+  border-right: 2px solid black;
+  overflow: auto;
+  background-color: #f2f2f2;
+  padding-left: 15px;
+}
+.mainPageContainer {
+  position: absolute;
+  left: 137.5px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding-left: 25px;
+  padding-right: 25px;
+  overflow: auto;
+}
+.breadcrumbs {
+  display: block;
+  background-color: inherit;
+  margin-top: 10px;
+}
+.item-container {
+  position: relative;
+  width: 100%;
+  border: 2px solid dimgrey;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.item-image {
+  float: left;
+  width: 170px;
+  margin: 20px;
+  text-align: center;
+}
+.item-image img {
+  max-height: 150px;
+  max-width: 150px;
+  padding: 10px;
+  background: #cdcdcd;
+  border: 2px solid dimgrey;
+  vertical-align: bottom;
+}
+.item-description {
+  padding: 20px;
+}
+.dismiss-news {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.siski {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 25%;
+  display: none;
+}
+.siski p {
+  padding-bottom: 10px;
+}
+.siski img {
+  max-width: 90%;
+  max-height: 90%;
+  display: none;
+}
