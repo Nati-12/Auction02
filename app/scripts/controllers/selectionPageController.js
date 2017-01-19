@@ -10,6 +10,8 @@
                 $scope.allItems = [];
                 $scope.itemNumbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
                 $scope.iNumItems = 0;
+                $scope.itemID4Search = ''; 
+                $scope.onlyNewItemsChecked = false;
 
                 $scope.currentPage = 1;
                 $scope.iNumItemsPerPage = 10; // default: 10 items per page
@@ -85,11 +87,12 @@
                         }, 0);
                     });
                 };
-                $scope.loadRandomItemsChunk = function () {
-                    $timeout(function () {
-                        $scope.itemNumbersArray = getRandomChunk(0, $scope.iNumItems - 1, $scope.iNumItemsPerPage);
-                    }, 0);
-                };
+                // $scope.loadRandomItemsChunk = function () {
+                //     $timeout(function () {
+                //         $scope.loadFirstPortion();
+                //         $scope.itemNumbersArray = getRandomChunk(0, $scope.iNumItems - 1, $scope.iNumItemsPerPage);
+                //     }, 0);
+                // };
                 function getRandomChunk(min, max, count) {
                     var tempArr = [];
                     while (tempArr.length < count) {
@@ -161,6 +164,35 @@
                             $scope.itemNumbersArray.push(iloop);
                         }
                 };
+
+
+                $scope.filterNewItems = function () {
+                    if (!$scope.onlyNewItemsChecked) {
+                        $state.go($state.current, {}, {reload: true});
+                    }
+                    var result = [];
+                    for (var iloop = 0; iloop < $scope.iNumItems; iloop++) {
+                        if ($scope.allItems[iloop].itemAge.toLowerCase().indexOf('новый') != -1) {
+                            result.push($scope.allItems[iloop]);
+                        }
+                    }
+                    $scope.allItems = result;
+                    $scope.iNumItems = $scope.allItems.length;
+                    $scope.pageNamesArray = recalculatePagesNumbers($scope.iNumItems, $scope.iNumItemsPerPage);
+                    $scope.generatePageItemNumbers(1);
+                };
+
+                $scope.sortItemsByPrice = function () {
+                    if (!$scope.sortItemsByPriceChecked) {
+                        //$state.go($state.current, {}, {reload: true});
+                    }
+                    $scope.allItems.sort(function(item1, item2) {
+                        return parseFloat(item1.itemCurrentPrice) - parseFloat(item2.itemCurrentPrice);
+                    });
+                };
+
+
+
 
                 $scope.loadFirstPortion(); // start it, hallelujah!
 
