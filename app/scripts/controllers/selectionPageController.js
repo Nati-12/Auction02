@@ -20,16 +20,19 @@
                     auctionDataFactory.getAllAuctionItems().query().$promise
                         .then(
                             function (response) {
+
                                 $scope.iNumItems = response.length;
                                 $scope.pageNamesArray = recalculatePagesNumbers($scope.iNumItems, $scope.iNumItemsPerPage);
-                                $log.info('loading items... done');
+                                $scope.generatePageItemNumbers(1);
+
                                 for (var itemsIterator in response)
                                     if (response.hasOwnProperty(itemsIterator) && !isNaN(parseInt(itemsIterator))) { // only number-labeled properties
                                         pushSingleItem(response[itemsIterator]);
                                     }
+                                $log.info('loading items... done');
                             },
                             function (response) {
-                                $log.info('Promise not resolved after item getall items call, status = ' + response.status);
+                                $log.info('Promise not resolved after getall items call, status = ' + response.status);
                             }
                         );
                     deferred.resolve();
@@ -73,15 +76,16 @@
                         }, 0);
                     });
                 }
+
                 $scope.loadFirstPortion = function () {
-                    var promise = fillItemsArray();
-                    promise.then(function () {
+                    var itemsLoadedPromise = fillItemsArray();
+                    itemsLoadedPromise.then(function () {
                         $timeout(function () {
                             $scope.generatePageItemNumbers(1); // arg '1' means "first page"
                         }, 0);
                     });
                 };
-                $scope.loadNextPortion = function () {
+                $scope.loadRandomItemsChunk = function () {
                     $timeout(function () {
                         $scope.itemNumbersArray = getRandomChunk(0, $scope.iNumItems - 1, $scope.iNumItemsPerPage);
                     }, 0);
@@ -94,44 +98,71 @@
                     }
                     return tempArr;
                 }
+
                 $scope.navigate2Item = function (itemID) {
                     $state.go('app.itemdetails', {'itemID': itemID});
                 };
-                $scope.generatePageItemNumbers = function(iPageNumber){
+                $scope.generatePageItemNumbers = function (iPageNumber) {
                     //console.log('loadPageData triggered, iPageNiumber==', iPageNumber);
                     $scope.currentPage = iPageNumber;
-                    var iStartItem = (iPageNumber-1)*$scope.iNumItemsPerPage;
+                    var iStartItem = (iPageNumber - 1) * $scope.iNumItemsPerPage;
                     $scope.itemNumbersArray = [];
-                    for (var iloop=0; iloop<$scope.iNumItemsPerPage; iloop++) {
+                    for (var iloop = 0; iloop < $scope.iNumItemsPerPage; iloop++) {
                         if (iloop + iStartItem >= $scope.iNumItems) break;
                         $scope.itemNumbersArray[iloop] = iloop + iStartItem;
                     }
                 };
-                function recalculatePagesNumbers(num, numperpage){
+                function recalculatePagesNumbers(num, numperpage) {
                     var result = [];
-                    var iNumPages = parseInt(num/numperpage, 10);
+                    var iNumPages = parseInt(num / numperpage, 10);
                     if (num % numperpage) iNumPages++;
-                    for (var iloop=1; iloop<=iNumPages; iloop++){
+                    for (var iloop = 1; iloop <= iNumPages; iloop++) {
                         result.push(iloop);
                     }
                     return result;
                 }
-                $scope.updatePagesNumbers = function(){
+
+                $scope.updatePagesNumbers = function () {
                     $scope.pageNamesArray = recalculatePagesNumbers($scope.iNumItems, $scope.iNumItemsPerPage);
                     $scope.currentPage = 1; // return to first page
                     $scope.generatePageItemNumbers($scope.currentPage); //and replot there new amount of items
 
                 };
-                $scope.markCurrentPage = function(page){
+                $scope.markCurrentPage = function (page) {
                     var style = {};
                     if (page == $scope.currentPage) style = {'font-weight': 'bold', 'background-color': '#e7e7e7'};
                     return style;
                 };
 
+                $scope.showHideSearchDiv = function () {
+                    var searchdiv = $('.search-div'), openSearchButton = $('#openSearchButton');
+                    if (searchdiv.css('display') == 'none') {
+                        searchdiv.css('display', 'inline-block');
+                        openSearchButton.text('Скрыть форму поиска');
+                    }
+                    else {
+                        searchdiv.css('display', 'none');
+                        openSearchButton.text('Открыть поиск по параметрам');
+                    }
+                };
 
+                $scope.searchItemByID = function () {
+                    $('#itemID4Search').val('');
+                    $scope.itemNumbersArray = [];
+                    for (var iloop=0; iloop<$scope.iNumItems; iloop++)
+                        if ($scope.allItems[iloop]._id == $scope.itemID4Search) {
+                                $scope.itemNumbersArray.push(iloop);
+                        }
+                };
+                $scope.searchItemBySellerName = function () {
+                    $scope.itemNumbersArray = [];
+                    for (var iloop = 0; iloop < $scope.iNumItems; iloop++)
+                        if ($scope.allItems[iloop].sellerName.toLowerCase().indexOf($scope.sellerName4Search.toLowerCase()) != -1) {
+                            $scope.itemNumbersArray.push(iloop);
+                        }
+                };
 
                 $scope.loadFirstPortion(); // start it, hallelujah!
-
 
 
             }]);

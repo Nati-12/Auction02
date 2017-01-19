@@ -445,13 +445,44 @@
   color: blue;
   background-color: #e7e7e7;
 }
-.description-wrapper button {
+.description-wrapper button,
+#generateRandomItemsButton,
+#openSearchButton,
+.search-button {
   padding: 5px;
   border-radius: 6px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 }
-.description-wrapper button:focus {
+.description-wrapper button:focus,
+#generateRandomItemsButton:focus,
+#openSearchButton:focus,
+.search-button:focus {
   box-shadow: 0 0 5px #000000;
+}
+#generateRandomItemsButton,
+#sortItemsbyPrice,
+.search-button {
+  margin-left: 20px;
+}
+#openSearchButton {
+  display: block;
+  margin: 10px 0;
+}
+.search-div {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid dimgrey;
+  border-radius: 6px;
+  display: none;
+  width: auto;
+}
+.search-div input {
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.search-div label {
+  width: 150px;
+  display: inline-block;
 }
 html {
   width: 100%;

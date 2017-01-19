@@ -4,11 +4,27 @@
             <i class="fa fa-angle-double-right" aria-hidden="true"></i> Подбор слонов</span></div>
 
     <h2>Подбор слона (всего в базе {{iNumItems}} слонов)</h2>
+        <button id="openSearchButton" ng-click="showHideSearchDiv()">Открыть поиск по параметрам</button>
+    <div class="search-div">
+        <label for="itemID4Search"> По коду слона </label>
+            <input type="text" id="itemID4Search" ng-model="itemID4Search" placeholder="введите код слона">
+        <button class="search-button" ng-click="searchItemByID()">поиск</button>
+        <br>
+        <label for="sellerName4Search"> По имени продавца</label>
+        <input type="text" id="sellerName4Search" ng-model="sellerName4Search" placeholder="введите имя">
+        <button class="search-button" ng-click="searchItemBySellerName()">поиск</button>
+    </div><br>
+
+    <label><input type="checkbox" id="onlyNewItemsCheckbox"/>Только новые слоны</label>
+    <label><input type="checkbox" id="sortItemsbyPrice"/>Сортировать по возрастанию цены</label>
+
+
     <div class="pagination-div">
         <p>Показать на странице:
-            <label><input type="radio" ng-model="iNumItemsPerPage" ng-value="5" ng-change="updatePagesNumbers()"> 5 </label>
-            <label><input type="radio" ng-model="iNumItemsPerPage" ng-value="10" checked ng-change="updatePagesNumbers()"> 10 </label>
-            <label><input type="radio" ng-model="iNumItemsPerPage" ng-value="15" ng-change="updatePagesNumbers()"> 15 </label>
+            <label><input type="radio" ng-model="iNumItemsPerPage" ng-value="5" ng-change="updatePagesNumbers()"/> 5 </label>
+            <label><input type="radio" ng-model="iNumItemsPerPage" ng-value="10" checked ng-change="updatePagesNumbers()"/> 10 </label>
+            <label><input type="radio" ng-model="iNumItemsPerPage" ng-value="15" ng-change="updatePagesNumbers()"/> 15 </label>
+            <button id="generateRandomItemsButton" ng-click="loadRandomItemsChunk()">Случайные слоны</button>
         </p>
 
         Переход на страницу:
@@ -17,8 +33,6 @@
                 <a ng-style="markCurrentPage(page)">{{page}}</a>
             </li>
         </ul>
-
-        <button ng-click="loadNextPortion()">Случайные слоны</button>
 
     </div>
 
