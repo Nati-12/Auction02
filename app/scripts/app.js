@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('auctionApp', ['ui.router','ngResource', 'ngSanitize'])
+    angular.module('auctionApp', ['ui.router','ngResource', 'ngSanitize', 'ngMap'])
         .config(function($stateProvider, $urlRouterProvider) {
             $stateProvider
             // route for the home page

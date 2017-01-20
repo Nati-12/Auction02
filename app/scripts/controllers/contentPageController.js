@@ -47,9 +47,9 @@
                             'Jogesh Muppala', 'Сидоров Кассир', 'Кассир Сидоров', 'Керниган Пайк Ричи', 'Луи Армстронг', 'Александр Сергеич',
                             'Василий Иванович', 'Королева Виктория', 'Джек Воробей', 'Захар', 'Тимур', 'Артур', 'Гайдар'],
                         namesArr2 = ['Сидор Иванович', 'Васька', 'Шарик', 'Луис', 'Шуня', 'Йоганн Четырнадцатый', 'Модэст', 'Вассерман',
-                            'Мишлен', 'Цветочек', 'Пестик', 'Тычинка', 'Сухой как Лист', 'Шуберт', 'Бетховен', 'Ркацители',
-                            'Шкаф', 'Диван', 'Иван Г', 'Телехобот', 'Пузо Николаевич', 'Халат', 'Мармелад', 'Шоколад', 'Лимонад', 'Буженина',
-                            'Василий Табуретов', 'Хобот Петрович', 'Калбаса', 'Тучка', 'Медвед', 'Блоховоз', 'Великолепный Х'],
+                            'Иван С', 'Цветочек', 'Рыбий Жир', 'Тычинка', 'Сухой как Лист', 'Шуберт', 'Касторка', 'Бетховен', 'Ркацители',
+                            'Шкаф', 'Диван', 'Телехобот', 'Пузо Николаевич', 'Халат', 'Мармелад', 'Шоколад', 'Лимонад', 'Буженина',
+                            'Василий Табуретов', 'Хобот Петрович', 'Сосиска', 'Калбаса', 'Тучка', 'Медвед', 'Блоховоз', 'Великолепный Х'],
                         agesArr = ['Совсем новый', 'Староват', 'Красивый', 'Блестящий', 'Совсем как настоящий'],
                         descriptionBase = ' <br> <br> Характерным органом слона является хобот, образованный из носа и верхней губы. Расположенные на конце хобота ноздри служат органом обоняния; хобот служит органом хватания, позволяя слону подбирать мелкие предметы с земли и срывать плоды с высоко расположенных веток; при питье слон набирает воду в хобот, а затем выливает в рот. В центре стопы слона есть жировая подушка, которая каждый раз, когда слон опускает ногу, «расплющивается», увеличивая площадь опоры. У слонов либо 2 бивня в верхней челюсти, либо нет бивней вообще. Чтобы защититься от паразитов, слоны нередко обливаются грязью. Засохшая грязевая корочка служит хорошей защитой от насекомых.',
                         descriptionsArr = ['Дивное жывотное, кушает всё, трубит негромко. Не продавал бы, но хочю купить мопэд.',
@@ -60,20 +60,34 @@
                             'Портит борозду, характер скверный, ненавидит рыбий жир, мечтает реализовать себя в сексе. Смотрит на меня странно. Опасаюсь. Продам незамедлительно.',
                             'Слон импортный, без пробега. Оснащён защитой от четырёхсот дятлов, склеенных в ряд. Новый компактный мини-слон. Уникальное предложение. Звоните. Торг у хобота.'];
 
-                    var iNumItems2Generate = 35, allItems = [], allFilenamesArr, iNumGenerated = 0;
+                    var iNumItems2Generate = 64, allFilenamesArr, iNumGenerated = 0;
 
-                    auctionDataFactory.getImageFilesList().get().$promise.then(
+                    // check database, if empty -- generate new chunk of items
+                    auctionDataFactory.getAllAuctionItems().query().$promise
+                        .then(
                             function (response) {
-                                allFilenamesArr = Object.values(response);
-                                allFilenamesArr = allFilenamesArr.slice(0, allFilenamesArr.length-2);
-                                for (iNumGenerated=0; iNumGenerated<iNumItems2Generate; iNumGenerated++) {
-                                    pushSingleItem();
+                                if (response.length < 1) {
+                                    $log.info ('fillItemsDatabase: items database is empty. regenerating...');
+                                    auctionDataFactory.getImageFilesList().get().$promise.then(
+                                        function (response) {
+                                            allFilenamesArr = Object.values(response);
+                                            allFilenamesArr = allFilenamesArr.slice(0, allFilenamesArr.length-2);
+                                            for (iNumGenerated=0; iNumGenerated<iNumItems2Generate; iNumGenerated++) {
+                                                pushSingleItem();
+                                            }
+                                        },
+                                        function (response) {
+                                            $log.info('Promise not resolved after item get by ID call, status = ' + response.status + ' ' + response.statusText);
+                                        }
+                                    );
                                 }
                             },
                             function (response) {
-                                $log.info('Promise not resolved after item get by ID call, status = ' + response.status + ' ' + response.statusText);
+                                $log.info('fillItemsDatabase: Promise not resolved after getall items call, status = ' + response.status);
                             }
                         );
+
+
 
                     function generateSingleItem() {
                         var deferred = $.Deferred();
@@ -93,8 +107,7 @@
                             'buyerName': null
                         };
                         console.log('Generating item number ', iNumGenerated, '...');
-                        item.itemImageFilename = allFilenamesArr[Object.keys(allFilenamesArr)[Math.floor(Math.random()
-                            * Object.keys(allFilenamesArr).length)]]; // this picks random value from an object 'response',
+                        item.itemImageFilename = allFilenamesArr[Object.keys(allFilenamesArr)[Math.floor(Math.random()*Object.keys(allFilenamesArr).length)]]; // this picks random value from an object 'response',
                         // details at http://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object
 
                         item.sellerName = getRandomElementFromArray(namesArr1);
@@ -140,7 +153,7 @@
                         return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
                     }
 
-                })(false);
+                })(true);
 
             }]);
 })();

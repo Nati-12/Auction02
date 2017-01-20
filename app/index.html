@@ -4,14 +4,13 @@
 <head>
     <meta charset="utf-8">
     <title>Auction</title>
-
-    <meta name="description" content="Auction app, version 1.0">
+    <meta name="description" content="Auction app, version 2.01">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="images/favicon.ico" rel="icon" type="image/x-icon"/>
     <!-- build:css styles/allstyles.css -->
     <link href="styles/style.css" rel="stylesheet">
     <link href="styles/font-awesome.css" rel="stylesheet">
     <!-- endbuild -->
-    <link href="images/favicon.ico" rel="icon" type="image/x-icon"/>
 </head>
 
 <body>
@@ -20,21 +19,22 @@
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
-<!--<div class="total-container">-->
-    <div ui-view="header"></div>
-    <div class="content-container">
-        <div ui-view="sidemenu"></div>
-        <div ui-view="content"></div>
-    </div>
-    <div ui-view="footer"></div>
-<!--</div>-->
+
+<div ui-view="header"></div>
+<div class="content-container">
+    <div ui-view="sidemenu"></div>
+    <div ui-view="content"></div>
+</div>
+<div ui-view="footer"></div>
+
 <!-- build:js scripts/allscripts.js -->
-<script src="../jquery-3.1.1.js"></script>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../node_modules/angular/angular.min.js"></script>
 <script src="../node_modules/angular-resource/angular-resource.min.js"></script>
 <script src="../node_modules/angular-route/angular-route.min.js"></script>
 <script src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="../node_modules/angular-sanitize/angular-sanitize.js"></script>
+<script src="../node_modules/ngmap/build/scripts/ng-map.min.js"></script>
 
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers/headerController.js"></script>

@@ -8,11 +8,11 @@
     <div class="search-div">
         <label for="itemID4Search"> По коду слона </label>
             <input type="text" id="itemID4Search" ng-model="itemID4Search" placeholder="введите код слона">
-        <button class="search-button" ng-click="searchItemByID()">поиск</button>
+        <button class="search-button" id="buttonSearchByID" ng-click="searchItemByID()">поиск</button>
         <br>
         <label for="sellerName4Search"> По имени продавца</label>
         <input type="text" id="sellerName4Search" ng-model="sellerName4Search" placeholder="введите имя">
-        <button class="search-button" ng-click="searchItemBySellerName()">поиск</button>
+        <button class="search-button" id="buttonSearchBySellerName" ng-click="searchItemBySellerName()">поиск</button>
     </div><br>
 
     <label><input type="checkbox" id="onlyNewItemsCheckbox" ng-model="onlyNewItemsChecked" ng-change="filterNewItems()"/>

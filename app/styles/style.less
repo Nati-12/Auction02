@@ -11,6 +11,7 @@
 @import "form_addNewItem.less";
 @import "itemdetails.less";
 @import "selectionPage.less";
+@import "contactsPage.less";
 
 html {
   width: 100%;
@@ -35,8 +36,10 @@ body {
   width: 100%;
   background-color: #f2f2f2;
   text-align: center;
-  margin:0; padding:0;
+  margin: 0;
+  padding: 0;
 }
+
 .slider {
   display: inline-block;
   height: @slider-image-height;
@@ -47,21 +50,24 @@ body {
   width: 100%;
   box-sizing: border-box;
 }
+
 .img4Slider {
   display: block;
   margin: 0 auto;
   position: relative;
 }
-.menubar-horizontal{
+
+.menubar-horizontal {
   margin-top: -4px;
   max-width: @max-view-width;
   min-width: @min-view-width;
-  width:auto;
+  width: auto;
   border-left: 2px solid black;
   border-right: 2px solid black;
 }
+
 .footer {
-  position:fixed;
+  position: fixed;
   height: @footerheight;
   min-width: @min-view-width;
   bottom: 0;
@@ -70,12 +76,30 @@ body {
   width: 100%;
   text-align: center;
 }
-.div-to-right{float:right;}
-.close-footer-button{border-radius: 4px;padding-top:-3px; padding-bottom:-3px;margin-right:5px;}
+
+.div-to-right {
+  float: right;
+}
+
+.close-footer-button {
+  border-radius: 4px;
+  padding-top: -3px;
+  padding-bottom: -3px;
+  margin-right: 5px;
+}
+
 /* color substyles for social icons in footer */
-.redcolor{color:red;}
-.lightbluecolor{color: #00B7FF;}
-.darkbluecolor{color: darkblue}
+.redcolor {
+  color: red;
+}
+
+.lightbluecolor {
+  color: #00B7FF;
+}
+
+.darkbluecolor {
+  color: darkblue
+}
 
 .content-container {
   position: absolute;
@@ -88,6 +112,7 @@ body {
   border: 2px solid black;
   overflow: auto;
 }
+
 .sidebar {
   position: absolute;
   width: @side-menu-width;
@@ -98,6 +123,7 @@ body {
   background-color: #f2f2f2;
   padding-left: 15px;
 }
+
 .mainPageContainer {
   position: absolute;
   left: @content-margin;
@@ -117,17 +143,19 @@ body {
 
 .item-container {
   position: relative;
-  width:100%;
+  width: 100%;
   border: 2px solid dimgrey;
   margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
 .item-image {
-  float:left;
+  float: left;
   width: 170px;
   margin: 20px;
   text-align: center;
 }
+
 .item-image img {
   max-height: 150px;
   max-width: 150px;
@@ -136,19 +164,32 @@ body {
   border: 2px solid dimgrey;
   vertical-align: bottom;
 }
+
 .item-description {
   padding: 20px;
 }
+
 .dismiss-news {
   position: absolute;
   right: 10px;
   top: 10px;
 }
+
 .siski {
   position: absolute;
-  left: 25%; right: 25%; top:25%;
+  left: 25%;
+  right: 25%;
+  top: 25%;
   display: none;
 }
-.siski p {padding-bottom: 10px;}
-.siski img {max-width:90%; max-height:90%; display:none;}
+
+.siski p {
+  padding-bottom: 10px;
+}
+
+.siski img {
+  max-width: 90%;
+  max-height: 90%;
+  display: none;
+}
 

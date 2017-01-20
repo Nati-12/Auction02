@@ -190,12 +190,11 @@
                         return parseFloat(item1.itemCurrentPrice) - parseFloat(item2.itemCurrentPrice);
                     });
                 };
-
-
-
-
+////////////////////////////////////////////////////////////////////////
                 $scope.loadFirstPortion(); // start it, hallelujah!
-
+////////////////////////////////////////////////////////////////////////
+                $("#itemID4Search").keydown(function(event){ if(event.keyCode == 13) $("#buttonSearchByID").click(); });
+                $("#sellerName4Search").keydown(function(event){ if(event.keyCode == 13) $("#buttonSearchBySellerName").click(); });
 
             }]);
 })();
