@@ -5,7 +5,7 @@ var fs = require('fs');
 var imageFilenamesRouter = express.Router();
 imageFilenamesRouter.use(bodyParser.json());
 
-var files = fs.readdirSync('/Users/Yuri/WebProjects/Auction01/app/images/items/');
+var files = fs.readdirSync('../app/images/items/');
 
 var fiesListObject = array2object(files);
 imageFilenamesRouter.route('/')

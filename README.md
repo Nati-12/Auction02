@@ -19,7 +19,9 @@ run mongo database daemon by a command
  ```
 mongod --dbpath=.
 ```
-MongoDB should start and listens for connections on default port 27017. 
+For ancient operation systems / mongoDB versions switch to simple storage engine 
+adding "--storageEngine=mmapv1" to command line call. MongoDB should start 
+and listens for connections on default port 27017. 
 
 * Switch to "your_project_folder/auction-rest-server" folder and run
 
@@ -53,6 +55,11 @@ to install packages, and then
 gulp watch
 ```
 to build application and to serve it locally in your default browser. 
+If you do not have local gulp command line interface installed, execute  
+```
+npm install gulp-cli -g
+```
+before gulp watch.
 
 Auction items test database will be created during first mainpage load 
 event, after that you may check application behavior performing calls to 
