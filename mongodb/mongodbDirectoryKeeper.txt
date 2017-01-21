@@ -1,0 +1,1 @@
+This file is used to keep empty directory mongodb/ under control of version control system.
