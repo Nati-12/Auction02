@@ -21,7 +21,7 @@ mongod --dbpath=.
 ```
 For ancient operation systems / mongoDB versions switch to simple storage engine 
 adding "--storageEngine=mmapv1" to command line call. MongoDB should start 
-and listens for connections on default port 27017. 
+and listen for connections on default port 27017. 
 
 * Switch to "your_project_folder/auction-rest-server" folder and run
 

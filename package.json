@@ -1,6 +1,6 @@
 {
-  "name": "auction01",
-  "version": "1.0.0",
+  "name": "auction02",
+  "version": "2.0.0",
   "description": "internet-auction \"by an elephant\"",
   "main": "index.html",
   "scripts": {
@@ -23,9 +23,9 @@
   "author": "Yuri Zaliznyak",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/YuriZaliznyak/auction01/issues"
+    "url": "https://github.com/YuriZaliznyak/Auction02/issues"
   },
-  "homepage": "https://github.com/YuriZaliznyak/auction01#readme",
+  "homepage": "https://github.com/YuriZaliznyak/Auction02#readme",
   "dependencies": {
     "angular": "^1.2.32",
     "angular-resource": "^1.6.1",
